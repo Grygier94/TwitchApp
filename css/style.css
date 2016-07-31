@@ -84,9 +84,9 @@ body {
                 height: 100%;
                 margin: auto;
                 border: solid 1px red;
-                -webkit-box-shadow: 0 0 10px 5px rgba(255, 0,0,0.75);
-                -moz-box-shadow: 0 0 10px 5px rgba(255,0,0,0.75);
-                box-shadow: 0 0 10px 5px rgba(255,0,0,0.75);
+                -webkit-box-shadow: 0 0 10px 5px rgba(0, 0,0,0.75);
+                -moz-box-shadow: 0 0 10px 5px rgba(0,0,0,0.75);
+                box-shadow: 0 0 10px 5px rgba(0,0,0,0.75);
             }
 
                 .panel a .panel-heading .streamerData .icon {
@@ -109,21 +109,30 @@ body {
                     font-size: 1em;
                 }
 
-    .panel .panel-body .title {
-        font-size: calc(1em + 1vw);
-    }
+.panel-body .panel-heading {
+    opacity: 0.85;
+}
 
-    .panel .panel-body .btn.btnTwitch {
-        background-color: #6441a4;
-        border-color: #6e52a3;
-        width: calc(5em + 4vw);
-    }
+.panel-body .panel-heading:hover {
+    opacity: 1 !important;
+}
 
-        .panel .panel-body .btn.btnTwitch:hover,
-        .panel .panel-body .btn.btnTwitch:focus {
-            color: white;
-            background-color: #5931a3;
-        }
+
+.panel .panel-body .title {
+    font-size: calc(1em + 1vw);
+}
+
+.panel .panel-body .btn.btnTwitch {
+    background-color: #6441a4;
+    border-color: #6e52a3;
+    width: calc(5em + 4vw);
+}
+
+    .panel .panel-body .btn.btnTwitch:hover,
+    .panel .panel-body .btn.btnTwitch:focus {
+        color: white;
+        background-color: #5931a3;
+    }
 
 .tvshape {
     border-radius: 50% / 10%;
