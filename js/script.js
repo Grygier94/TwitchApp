@@ -1,5 +1,5 @@
 var streamers = ['nvidia', 'izakooo', 'jinx_em', 'markiplier', 'pewdiepie', 'freecodecamp', 'playparagon', 'unrealengine', 'legendoflimitless',
-    'mcgrzes', 'shumiifawkes', 'inetkoxtv', 'pashabiceps', 'brunofin', 'esl_sc2', 'bandainamcous', 'urqueeen'];
+    'mcgrzes', 'shumiifawkes', 'inetkoxtv', 'pashabiceps', 'brunofin', 'esl_sc2', 'bandainamcous', 'urqueeen', 'sawardega'];
 
 
 $(document).ready(function () {
@@ -79,7 +79,7 @@ function setSite() {
                     }
                 } else {
                     $('#' + streamers[i] + ' .streamerData').css('border-color', 'rgba(89,55,24, 1)')
-                            .css('-webkit-box-shadow', '0 0 10px 5px rgba(255,0,0, 0.75)').css('-moz-box-shadow', '0 0 10px 5px rgba(255,0,0, 0.75)').css('box-shadow', '0 0 25px 5px rgba(89,55,24, 1)');
+                            .css('-webkit-box-shadow', '0 0 10px 5px rgba(89,55,24, 1))').css('-moz-box-shadow', '0 0 10px 5px rgba(89,55,24, 1)').css('box-shadow', '0 0 25px 5px rgba(89,55,24, 1)');
                     $('#' + streamers[i] + ' .panel-body .well').html('<h1 class="title">Account closed!</h1>')
                 }
 
@@ -139,6 +139,8 @@ function sortChannels() {
     for (var i = 0; i < streamers.length; i++) {
         if ($('#' + streamers[i] + ' .streamerData').css('border-color') == 'rgb(0, 128, 0)') {
             $('#' + streamers[i]).parent().prepend($('#' + streamers[i]));
+        } else if ($('#' + streamers[i] + ' .streamerData').css('border-color') == 'rgb(89, 55, 24)') {
+            $('#' + streamers[i]).parent().append($('#' + streamers[i]));
         }
     }
 }
