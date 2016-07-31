@@ -1,0 +1,132 @@
+@font-face {
+    font-family: twitchFont;
+    src: url(../fonts/dimis.ttf);
+}
+
+@font-face {
+    font-family: twitchFilledFont;
+    src: url(../fonts/dimitri.ttf);
+}
+
+body {
+    font-size: 150%;
+    text-align: center;
+    background-image: url(../images/backgroundImage.jpg);
+    margin: 0;
+    padding: 0;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+/*Main panel*/
+#mainPanel {
+    border-color: #6441a4;
+}
+
+#mainPanelHeading {
+    background-color: #6441a4;
+}
+
+.panel-title {
+    color: white;
+    font-weight: bold;
+    font-family: twitchFont;
+    font-size: calc(1em + 1vw);
+}
+
+#mainPanelFooter {
+    background-color: #6441a4;
+    color: #fff;
+    font-size: calc(0.75em + 0.35vw);
+}
+
+/*Search bar*/
+.input-group {
+    margin-bottom: 5px;
+}
+
+/*Navbar*/
+.panel-body ul li {
+    background-color: #9993a3;
+}
+
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus {
+    color: #fff;
+    background-color: #7962a3;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    background-color: #6441a4;
+}
+
+/*Inner panel*/
+.panel {
+    margin: 0 !important;
+}
+
+    .panel a {
+        text-decoration: none;
+        color: white;
+    }
+
+        .panel a .panel-heading {
+            height: 125px;
+            border-radius: unset;
+            padding: 2%;
+            background-size: 100%;
+        }
+
+            .panel a .panel-heading .streamerData {
+                background-color: rgba(0,0,0,0.7);
+                height: 100%;
+                margin: auto;
+                border: solid 1px red;
+                -webkit-box-shadow: 0 0 10px 5px rgba(255, 0,0,0.75);
+                -moz-box-shadow: 0 0 10px 5px rgba(255,0,0,0.75);
+                box-shadow: 0 0 10px 5px rgba(255,0,0,0.75);
+            }
+
+                .panel a .panel-heading .streamerData .icon {
+                    width: 70px;
+                    margin: 10px;
+                    margin-left: 20px;
+                }
+
+                .panel a .panel-heading .streamerData .streamerName {
+                    padding: 0;
+                    font-family: twitchFont;
+                    font-weight: bold;
+                    font-size: calc(0.8em + 0.8vw);
+                }
+
+                .panel a .panel-heading .streamerData .game {
+                    margin-left: 0;
+                    font-family: twitchFilledFont;
+                    color: #fff !important;
+                    font-size: 1em;
+                }
+
+    .panel .panel-body .title {
+        font-size: calc(1em + 1vw);
+    }
+
+    .panel .panel-body .btn.btnTwitch {
+        background-color: #6441a4;
+        border-color: #6e52a3;
+        width: calc(5em + 4vw);
+    }
+
+        .panel .panel-body .btn.btnTwitch:hover,
+        .panel .panel-body .btn.btnTwitch:focus {
+            color: white;
+            background-color: #5931a3;
+        }
+
+.tvshape {
+    border-radius: 50% / 10%;
+    display: block;
+    margin: 0 auto;
+}
