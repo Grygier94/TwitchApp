@@ -139,3 +139,8 @@ body {
     display: block;
     margin: 0 auto;
 }
+
+/*Footer*/
+#mainPanelFooter {
+    font-family: twitchFont;
+}
