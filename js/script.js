@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     $('.panel-body .panel-heading').click(function () {
         $('.panel-body .panel-heading').css('opacity', '0.85');
-        if($(this).parent().hasClass('collapsed'))
+        if ($(this).parent().hasClass('collapsed'))
             $(this).css('opacity', '1');
     });
 });
@@ -61,39 +61,44 @@ function setSite() {
 
     for (var i = 0; i < streamers.length; i++) {
         (function (i) {
+            $.getJSON({
+                url: 'https://api.twitch.tv/kraken/streams/' + streamers[i],
+                headers: { 'Client-ID': 'giwah5tc8vu30qthfn62pn744hql9nx' },
+                success: function (data) {
+                    
+                    if (data.status != '422' && data.status != '400') {
+                        if (data.stream != null) {
+                            $('#' + streamers[i] + ' .streamerData').css('border-color', 'green')
+                                .css('-webkit-box-shadow', '0 0 10px 5px rgba(0,255,0, 0.75)').css('-moz-box-shadow', '0 0 10px 5px rgba(0,255,0, 0.75)').css('box-shadow', '0 0 10px 5px rgba(0,255,0, 0.75)');
 
-            $.getJSON('https://api.twitch.tv/kraken/streams/' + streamers[i] + '?callback=?', function (data) {
-                if (data.status != '422') {
-                    if (data.stream != null) {
-                        $('#' + streamers[i] + ' .streamerData').css('border-color', 'green')
-                            .css('-webkit-box-shadow', '0 0 10px 5px rgba(0,255,0, 0.75)').css('-moz-box-shadow', '0 0 10px 5px rgba(0,255,0, 0.75)').css('box-shadow', '0 0 10px 5px rgba(0,255,0, 0.75)');
-
-                        $('#' + streamers[i] + ' .panel-body .well').html(
-                                    '<h1 class="title">' + data.stream.channel.status + '</h1>' +
-                                    '<p>Game: <strong>' + data.stream.game + '</strong></p>' +
-                                    '<p>Viewers: <strong>' + data.stream.viewers + '</strong></p>' +
-                                    '<p>Followers: <strong>' + data.stream.channel.followers + '</strong></p>' +
-                                    '<p>Language: <strong>' + data.stream.channel.language + '</strong></p><br />' +
-                                    '<img class="tvshape img-responsive text-center" src="' + data.stream.preview.large + '" /><br /><br />' +
-                                    '<a class="btn btnTwitch" target="_blank" href="' + data.stream.channel.url + '"><i class="fa fa-twitch" aria-hidden="true"></i> Watch</a>')
+                            $('#' + streamers[i] + ' .panel-body .well').html(
+                                        '<h1 class="title">' + data.stream.channel.status + '</h1>' +
+                                        '<p>Game: <strong>' + data.stream.game + '</strong></p>' +
+                                        '<p>Viewers: <strong>' + data.stream.viewers + '</strong></p>' +
+                                        '<p>Followers: <strong>' + data.stream.channel.followers + '</strong></p>' +
+                                        '<p>Language: <strong>' + data.stream.channel.language + '</strong></p><br />' +
+                                        '<img class="tvshape img-responsive text-center" src="' + data.stream.preview.large + '" /><br /><br />' +
+                                        '<a class="btn btnTwitch" target="_blank" href="' + data.stream.channel.url + '"><i class="fa fa-twitch" aria-hidden="true"></i> Watch</a>')
+                        }
+                    } else {
+                        $('#' + streamers[i] + ' .streamerData').css('border-color', 'rgba(89,55,24, 1)')
+                                .css('-webkit-box-shadow', '0 0 10px 5px rgba(89,55,24, 1))').css('-moz-box-shadow', '0 0 10px 5px rgba(89,55,24, 1)').css('box-shadow', '0 0 25px 5px rgba(89,55,24, 1)');
+                        $('#' + streamers[i] + ' .panel-body .well').html('<h1 class="title">Account closed!</h1>')
                     }
-                } else {
-                    $('#' + streamers[i] + ' .streamerData').css('border-color', 'rgba(89,55,24, 1)')
-                            .css('-webkit-box-shadow', '0 0 10px 5px rgba(89,55,24, 1))').css('-moz-box-shadow', '0 0 10px 5px rgba(89,55,24, 1)').css('box-shadow', '0 0 25px 5px rgba(89,55,24, 1)');
-                    $('#' + streamers[i] + ' .panel-body .well').html('<h1 class="title">Account closed!</h1>')
-                }
 
 
-                $.getJSON('https://api.twitch.tv/kraken/channels/' + streamers[i] + '?callback=?', function (innerData) {
-
-                    $('#' + streamers[i] + ' .icon').attr('src', (innerData.logo == null) ? 'images/twitchIcon.png' : innerData.logo);
-                    $('#' + streamers[i] + ' .streamerName').html(streamers[i]);
-                    $('#' + streamers[i] + ' .game').html(data.status == '422' ? 'Account closed!' : innerData.game);
-                    $('#' + streamers[i] + ' .panel-heading').css('background', 'url("' + (innerData.profile_banner == null ? innerData.video_banner : innerData.profile_banner) + '") no-repeat center').css('background-size', '100%');
-                    sortChannels();
-                });
-
-            });
+                    $.getJSON({
+                        url: 'https://api.twitch.tv/kraken/channels/' + streamers[i],
+                        headers: { 'Client-ID': 'giwah5tc8vu30qthfn62pn744hql9nx' },
+                        success: function (innerData) {
+                            $('#' + streamers[i] + ' .icon').attr('src', (innerData.logo == null) ? 'images/twitchIcon.png' : innerData.logo);
+                            $('#' + streamers[i] + ' .streamerName').html(streamers[i]);
+                            $('#' + streamers[i] + ' .game').html(data.status == '422' ? 'Account closed!' : innerData.game);
+                            $('#' + streamers[i] + ' .panel-heading').css('background', 'url("' + (innerData.profile_banner == null ? innerData.video_banner : innerData.profile_banner) + '") no-repeat center').css('background-size', '100%');
+                            sortChannels();
+                        }
+                    });
+                }});
         })(i);
     }
 }
